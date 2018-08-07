@@ -14,7 +14,6 @@
 #include<arpa/inet.h>
 
 
-
 // Author: Guy Collins
 // Date: 06/08/2018
 // Description: Object orientated socket server wrapper.
@@ -32,14 +31,18 @@ public:
 
     int init();
 
-    void passiveRead(char* buffer, int buffLen);
+    int passiveRead(char* buffer, int buffLen);
 
     void activeSend(char* buffer, int buffLen);
+
+    void acceptNew();
+
+    void Close();
 };
 
 // Author: Guy Collins
 // Date: 06/08/2018
-// Description: Object orientated socket server wrapper.
+// Description: Object orientated socket Client wrapper.
 class ClientSocket
 {
 private:

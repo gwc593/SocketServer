@@ -42,25 +42,57 @@ int ServerSocket::init()
         exit(EXIT_FAILURE);
     }
 
+    return 0;
+}
+
+void ServerSocket::acceptNew()
+{
+
     if ((socketHandle = accept(server_fd, (struct sockaddr *)&address,
-                             (socklen_t*)&addrlen))<0)
+                               (socklen_t*)&addrlen))<0)
     {
         perror("accept error:");
         exit(EXIT_FAILURE);
     }
-
-    return socketHandle;
 }
 
-void ServerSocket::passiveRead(char *buffer, int buffLen)
+
+int ServerSocket::passiveRead(char *buffer, int buffLen)
 {
-    read(socketHandle,buffer,buffLen);
+
+   // read(socketHandle,buffer,buffLen);
+    int bytes =0;
+    memset(buffer,'\0',buffLen);
+    bytes = recv(socketHandle, buffer, buffLen, 0);
+    send(socketHandle, buffer, bytes,0);
+    return bytes;
+
 }
 
 void ServerSocket::activeSend(char *buffer, int buffLen)
 {
     send(socketHandle,buffer,buffLen,0);
 }
+
+
+void ServerSocket::Close()
+{
+    close(socketHandle);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 void ClientSocket::setPort(int port)
