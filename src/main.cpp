@@ -1,6 +1,7 @@
 // Server side C/C++ program to demonstrate Socket programming
 
 #ifdef __APPLE__
+
 #include<SocketFunctionsOSX.hpp>
 
 #else
@@ -8,14 +9,9 @@
 #endif
 
 
-
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]) {
     //declarations
     char buffer[BUFF_SIZE];
-
-
-    //create new Socket based Server.
     ServerSocket myServer;
 
     //setup new server
@@ -26,11 +22,11 @@ int main(int argc, char const *argv[])
 /*    need tp develope a method for detecting when socket handle is no longer valid, then put
     into a loop where it can accept another connection.*/
 
-    while(strcmp(buffer,"END_STREAM")){
+    while (strcmp(buffer, "END_STREAM") != 0) {
 
-        if(myServer.passiveRead(buffer, sizeof(buffer))){
+        if (myServer.passiveRead(buffer, sizeof(buffer))) {
             //print recieved message
-            printf("%s\n",buffer );
+            printf("%s\n", buffer);
         }
 
     }

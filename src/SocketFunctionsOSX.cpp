@@ -136,9 +136,11 @@ int ClientSocket::init()
         printf("\nConnection Failed \n");
         return -1;
     }
+
+    return 0;
 }
 
-int ClientSocket::activeSend(char *buffer, int buffLen)
+int ClientSocket::activeSend(char *buffer)
 {
     send(socketHandle,buffer,BUFF_SIZE,0);
     recv(socketHandle,_buffer, BUFF_SIZE,0);

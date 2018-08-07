@@ -65,7 +65,7 @@ public:
 
     int init();
 
-    int activeSend(char* buffer, int buffLen);
+    int activeSend(char* buffer);
 
     void passiveRead(char* buffer, int buffLen);
 
