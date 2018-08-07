@@ -145,12 +145,17 @@ int ClientSocket::activeSend(char *buffer)
     send(socketHandle,buffer,BUFF_SIZE,0);
     recv(socketHandle,_buffer, BUFF_SIZE,0);
 
-    return(strcmp(buffer,_buffer));
+    if(strcmp(_buffer,buffer)){
+        printf("recieved:%s\n",_buffer);
+    }
+
+    return (strcmp(_buffer, buffer));
 }
 
-void ClientSocket::passiveRead(char *buffer, int buffLen)
+
+ssize_t ClientSocket::passiveRead(char *buffer, int buffLen)
 {
-    read(socketHandle,buffer,buffLen);
+    return recv(socketHandle,buffer, BUFF_SIZE,0);
 }
 
 void ClientSocket::Close()

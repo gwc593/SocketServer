@@ -67,7 +67,7 @@ public:
 
     int activeSend(char* buffer);
 
-    void passiveRead(char* buffer, int buffLen);
+    ssize_t passiveRead(char* buffer, int buffLen);
 
     void Close();
 };
