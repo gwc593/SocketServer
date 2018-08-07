@@ -7,8 +7,7 @@
 #include<SocketFunctionsOSX.hpp>
 #endif
 
-#define DEFAULT_PORT 8080
-#define  BUFF_SIZE 1024
+
 
 int main(int argc, char const *argv[])
 {
@@ -23,6 +22,9 @@ int main(int argc, char const *argv[])
     myServer.setPort(DEFAULT_PORT);
     myServer.init();
     myServer.acceptNew();
+
+/*    need tp develope a method for detecting when socket handle is no longer valid, then put
+    into a loop where it can accept another connection.*/
 
     while(true){
 

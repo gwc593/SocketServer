@@ -13,6 +13,8 @@
 #include <string.h>
 #include<arpa/inet.h>
 
+#define DEFAULT_PORT 8080
+#define  BUFF_SIZE 1024
 
 // Author: Guy Collins
 // Date: 06/08/2018
@@ -51,8 +53,7 @@ private:
 
     int socketHandle = 0;
     struct sockaddr_in serv_addr;
-    char *hello = "Hello from client";
-    char buffer[1024] = {0};
+    char _buffer[BUFF_SIZE];
 
 public:
 
@@ -64,9 +65,11 @@ public:
 
     int init();
 
-    void activeSend(char* buffer, int buffLen);
+    int activeSend(char* buffer, int buffLen);
 
     void passiveRead(char* buffer, int buffLen);
+
+    void Close();
 };
 
 

@@ -138,12 +138,20 @@ int ClientSocket::init()
     }
 }
 
-void ClientSocket::activeSend(char *buffer, int buffLen)
+int ClientSocket::activeSend(char *buffer, int buffLen)
 {
-    send(socketHandle,buffer,buffLen,0);
+    send(socketHandle,buffer,BUFF_SIZE,0);
+    recv(socketHandle,_buffer, BUFF_SIZE,0);
+
+    return(strcmp(buffer,_buffer));
 }
 
 void ClientSocket::passiveRead(char *buffer, int buffLen)
 {
     read(socketHandle,buffer,buffLen);
+}
+
+void ClientSocket::Close()
+{
+    close(socketHandle);
 }
