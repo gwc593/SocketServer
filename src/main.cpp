@@ -12,7 +12,7 @@
 int main(int argc, char const *argv[])
 {
     //declarations
-    char buffer[BUFF_SIZE] = {0};
+    char buffer[BUFF_SIZE];
 
 
     //create new Socket based Server.
@@ -26,7 +26,7 @@ int main(int argc, char const *argv[])
 /*    need tp develope a method for detecting when socket handle is no longer valid, then put
     into a loop where it can accept another connection.*/
 
-    while(true){
+    while(strcmp(buffer,"END_STREAM")){
 
         if(myServer.passiveRead(buffer, sizeof(buffer))){
             //print recieved message
